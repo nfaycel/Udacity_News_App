@@ -5,7 +5,7 @@ class News {
     public String mSection;
     private String mTitle;
     private String mText;
-    private String mAuthor;
+    private String mAuthors;
 
     private String mUrl;
 
@@ -14,7 +14,7 @@ class News {
         this.mTitle = mTitle;
         this.mText = mText;
         this.mSection = mSection;
-        this.mAuthor = mAuthor;
+        this.mAuthors = mAuthor;
 
         this.mUrl = mUrl;
     }
@@ -43,12 +43,12 @@ class News {
         this.mSection = mSection;
     }
 
-    public String getmAuthor() {
-        return mAuthor;
+    public String getmAuthors() {
+        return mAuthors;
     }
 
-    public void setmAuthor(String mAuthor) {
-        this.mAuthor = mAuthor;
+    public void setmAuthors(String mAuthors) {
+        this.mAuthors = mAuthors;
     }
 
 

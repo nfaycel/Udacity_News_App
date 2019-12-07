@@ -15,7 +15,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static final String GUARDIAN_API_URL = "https://content.guardianapis.com/search?q=debate&tag=politics/politics&from-date=2014-01-01&api-key=6140f015-b070-4b9c-b1bf-160b8694dd7f";
+    public static final String GUARDIAN_API_URL = "https://content.guardianapis.com/search?api-key=6140f015-b070-4b9c-b1bf-160b8694dd7f";
     private ListView listView;
     private AdapterNews adapter;
     private LoaderManager.LoaderCallbacks<List<News>> mCallbacks;

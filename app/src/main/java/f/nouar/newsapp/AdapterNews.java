@@ -38,7 +38,12 @@ public class AdapterNews extends ArrayAdapter<News> {
         article_title.setText((currentNews.getmTitle()));
 
         TextView article_text = (TextView) convertView.findViewById(R.id.article_text);
-        article_title.setText((currentNews.getmText()));
+        article_text.setText((currentNews.getmText()));
+
+        TextView article_section = (TextView) convertView.findViewById(R.id.article_section);
+        article_section.setText((currentNews.getmSection()));
+
+
 
 
 
