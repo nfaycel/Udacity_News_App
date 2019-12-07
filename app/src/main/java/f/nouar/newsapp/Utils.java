@@ -119,15 +119,15 @@ public final class Utils {
         return output.toString();
     }
 
-    private static List<News> extractNewsListFromJson(String earthquakeJSON) {
+    private static List<News> extractNewsListFromJson(String newsJSON) {
         // If the JSON string is empty or null, then return early.
         List<News> newsList= new ArrayList<News>();
-        if (TextUtils.isEmpty(earthquakeJSON)) {
+        if (TextUtils.isEmpty(newsJSON)) {
             return null;
         }
 
         try {
-            JSONObject baseJsonResponse = new JSONObject(earthquakeJSON);
+            JSONObject baseJsonResponse = new JSONObject(newsJSON);
             JSONObject response = baseJsonResponse.getJSONObject("response");
             JSONArray results = response.getJSONArray("results");
 
@@ -140,8 +140,26 @@ public final class Utils {
                     String Text = r.getString("webTitle") ;
                     //Long TimeInMilliseconds = r.getLong("webPublicationDate") ;
                     String Url = r.getString("webUrl") ;
+
+                    //get authors if exist
+                    StringBuilder authors = new StringBuilder();
+                    JSONArray tags = r.optJSONArray("tags");
+                    Log.i("tags length",String.valueOf(tags.length()));
+                    if(tags!= null && tags.length()>0){
+                        authors.append("by: ");
+                        for(int j = 0; j< tags.length(); j++) {
+                            JSONObject z = tags.getJSONObject(j);
+                            if(j>1 && j!=tags.length())
+                                authors.append(", ");
+                            authors.append(z.getString("webTitle"));
+                        }
+                        authors.append(".");
+                        Log.i("xxx",authors.toString());
+                    }
+
+
                     Log.i("news: ", Section+","+Title+","+Text);
-                    News news = new News(Title,Text,Section,"",Url);
+                    News news = new News(Title,Text,Section,authors.toString(),Url);
                     newsList.add(news);
                 }
                 // Create a new {@link Event} object
