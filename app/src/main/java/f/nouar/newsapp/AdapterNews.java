@@ -34,21 +34,22 @@ public class AdapterNews extends ArrayAdapter<News> {
 
         News currentNews = NewsList.get(position);
 
-        TextView article_title = (TextView) convertView.findViewById(R.id.article_title);
+        TextView article_title =  convertView.findViewById(R.id.article_title);
         article_title.setText((currentNews.getmTitle()));
 
-        TextView article_text = (TextView) convertView.findViewById(R.id.article_text);
+        TextView article_text =  convertView.findViewById(R.id.article_text);
         article_text.setText((currentNews.getmText()));
 
-        TextView article_section = (TextView) convertView.findViewById(R.id.article_section);
+        TextView article_section =  convertView.findViewById(R.id.article_section);
         article_section.setText((currentNews.getmSection()));
 
-        TextView article_authors = (TextView) convertView.findViewById(R.id.article_authors);
+        TextView article_authors =  convertView.findViewById(R.id.article_authors);
         article_authors.setText((currentNews.getmAuthors()));
 
-
-
-
+        //Date dateObject = new Date(currentNews.getmDate());
+        //String formattedDate = formatDate(dateObject);
+        TextView article_date =  convertView.findViewById(R.id.date);
+        article_date.setText(currentNews.getmDate());
 
         Log.i("xxxx", "url: " + currentNews.getmUrl());
 

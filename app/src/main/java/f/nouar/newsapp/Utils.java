@@ -16,7 +16,9 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.Charset;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -138,9 +140,8 @@ public final class Utils {
                     String Section = r.getString("type") ;
                     String Title = r.getString("sectionName") ;
                     String Text = r.getString("webTitle") ;
-                    //Long TimeInMilliseconds = r.getLong("webPublicationDate") ;
                     String Url = r.getString("webUrl") ;
-
+                    String date = r.optString("webPublicationDate").split("T")[0] ;
                     //get authors if exist
                     StringBuilder authors = new StringBuilder();
                     JSONArray tags = r.optJSONArray("tags");
@@ -149,24 +150,23 @@ public final class Utils {
                         authors.append("by: ");
                         for(int j = 0; j< tags.length(); j++) {
                             JSONObject z = tags.getJSONObject(j);
-                            if(j>1 && j!=tags.length())
+                            if(j>0 && j!=tags.length())
                                 authors.append(", ");
                             authors.append(z.getString("webTitle"));
                         }
                         authors.append(".");
                         Log.i("xxx",authors.toString());
                     }
-
-
                     Log.i("news: ", Section+","+Title+","+Text);
-                    News news = new News(Title,Text,Section,authors.toString(),Url);
+                    News news = new News(Title,Text,Section,authors.toString(),Url, date);
                     newsList.add(news);
                 }
                 // Create a new {@link Event} object
             }
         } catch (JSONException e) {
-            Log.e(LOG_TAG, "Problem parsing the earthquake JSON results", e);
+            Log.e(LOG_TAG, "Problem parsing the News JSON results", e);
         }
         return newsList;
     }
+
 }

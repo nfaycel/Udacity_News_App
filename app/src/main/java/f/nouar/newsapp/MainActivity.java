@@ -1,7 +1,11 @@
 package f.nouar.newsapp;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
@@ -29,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         listView = findViewById(R.id.list);
         adapter = new AdapterNews(this, 0, new ArrayList<News>());
         listView.setAdapter(adapter);
-        /*listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 News currentNews = adapter.getItem(position);
@@ -37,9 +41,8 @@ public class MainActivity extends AppCompatActivity {
                 Intent websiteItent = new Intent(Intent.ACTION_VIEW, newsUri);
                 startActivity(websiteItent);
             }
-        });*/
+        });
         new asyncLoader(this).forceLoad();
-
     }
 
 

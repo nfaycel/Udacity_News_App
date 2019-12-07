@@ -6,15 +6,18 @@ class News {
     private String mTitle;
     private String mText;
     private String mAuthors;
-
+    private String mDate;
     private String mUrl;
 
 
-    public News(String mTitle, String mText, String mSection, String mAuthor,  String mUrl) {
+
+
+    public News(String mTitle, String mText, String mSection, String mAuthor, String mUrl, String mDate) {
         this.mTitle = mTitle;
         this.mText = mText;
         this.mSection = mSection;
         this.mAuthors = mAuthor;
+        this.mDate = mDate;
 
         this.mUrl = mUrl;
     }
@@ -59,5 +62,13 @@ class News {
 
     public void setmUrl(String mUrl) {
         this.mUrl = mUrl;
+    }
+
+    public String getmDate() {
+        return mDate;
+    }
+
+    public void setmDate(String mDate) {
+        this.mDate = mDate;
     }
 }
