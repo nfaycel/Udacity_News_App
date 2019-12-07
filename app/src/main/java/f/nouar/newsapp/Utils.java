@@ -16,9 +16,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.Charset;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 
@@ -31,6 +29,7 @@ public final class Utils {
 
 
     public static List<News> fetchNewsData(String requestUrl) {
+        Log.i("Loader","fetchnewsdata from utils class !!!");
         // Create URL object
         URL url = createUrl(requestUrl);
 
@@ -67,6 +66,7 @@ public final class Utils {
      */
     private static String makeHttpRequest(URL url) throws IOException {
         String jsonResponse = "";
+        Log.i("Loader","make http request !!!");
 
         // If the URL is null, then return early.
         if (url == null) {
