@@ -30,9 +30,8 @@ public final class Utils {
 
     public static List<News> fetchNewsData(String requestUrl) {
         Log.i("Loader","fetchnewsdata from utils class !!!");
-        // Create URL object
+           // Create URL object
         URL url = createUrl(requestUrl);
-
         // Perform HTTP request to the URL and receive a JSON response back
         String jsonResponse = null;
         try {
@@ -67,7 +66,6 @@ public final class Utils {
     private static String makeHttpRequest(URL url) throws IOException {
         String jsonResponse = "";
         Log.i("Loader","make http request !!!");
-
         // If the URL is null, then return early.
         if (url == null) {
             return jsonResponse;
@@ -89,9 +87,11 @@ public final class Utils {
                 jsonResponse = readFromStream(inputStream);
             } else {
                 Log.e(LOG_TAG, "Error response code: " + urlConnection.getResponseCode());
+
             }
         } catch (IOException e) {
-            Log.e(LOG_TAG, "Problem retrieving the earthquake JSON results.", e);
+            Log.e(LOG_TAG, "Problem retrieving the News JSON results.", e);
+            //MainActivity.response="Can't load data from the source !!!";
         } finally {
             if (urlConnection != null) {
                 urlConnection.disconnect();
