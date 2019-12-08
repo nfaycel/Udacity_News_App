@@ -1,6 +1,5 @@
 package f.nouar.newsapp;
 
-import android.se.omapi.SEService;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -19,17 +18,11 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public final class Utils {
 
-    /**
-     * Tag for the log messages
-     */
     public static final String LOG_TAG = Utils.class.getSimpleName();
 
-
     public static List<News> fetchNewsData(String requestUrl) {
-        Log.i("Loader","fetchnewsdata from utils class !!!");
            // Create URL object
         URL url = createUrl(requestUrl);
         // Perform HTTP request to the URL and receive a JSON response back
@@ -65,7 +58,6 @@ public final class Utils {
      */
     private static String makeHttpRequest(URL url) throws IOException {
         String jsonResponse = "";
-        Log.i("Loader","make http request !!!");
         // If the URL is null, then return early.
         if (url == null) {
             return jsonResponse;
@@ -91,7 +83,6 @@ public final class Utils {
             }
         } catch (IOException e) {
             Log.e(LOG_TAG, "Problem retrieving the News JSON results.", e);
-            //MainActivity.response="Can't load data from the source !!!";
         } finally {
             if (urlConnection != null) {
                 urlConnection.disconnect();
@@ -127,7 +118,6 @@ public final class Utils {
         if (TextUtils.isEmpty(newsJSON)) {
             return null;
         }
-
         try {
             JSONObject baseJsonResponse = new JSONObject(newsJSON);
             JSONObject response = baseJsonResponse.getJSONObject("response");
@@ -136,7 +126,6 @@ public final class Utils {
             if (results.length() > 0) {
                 for (int i = 0; i < results.length(); i++) {
                     JSONObject r = results.getJSONObject(i);
-
                     String Section = r.getString("type") ;
                     String Title = r.getString("sectionName") ;
                     String Text = r.getString("webTitle") ;
@@ -145,9 +134,8 @@ public final class Utils {
                     //get authors if exist
                     StringBuilder authors = new StringBuilder();
                     JSONArray tags = r.optJSONArray("tags");
-                    Log.i("tags length",String.valueOf(tags.length()));
                     if(tags!= null && tags.length()>0){
-                        authors.append("by: ");
+                        authors.append("By: ");
                         for(int j = 0; j< tags.length(); j++) {
                             JSONObject z = tags.getJSONObject(j);
                             if(j>0 && j!=tags.length())
@@ -155,13 +143,10 @@ public final class Utils {
                             authors.append(z.getString("webTitle"));
                         }
                         authors.append(".");
-                        Log.i("xxx",authors.toString());
                     }
-                    Log.i("news: ", Section+","+Title+","+Text);
                     News news = new News(Title,Text,Section,authors.toString(),Url, date);
                     newsList.add(news);
                 }
-                // Create a new {@link Event} object
             }
         } catch (JSONException e) {
             Log.e(LOG_TAG, "Problem parsing the News JSON results", e);

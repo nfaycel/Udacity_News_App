@@ -1,9 +1,6 @@
 package f.nouar.newsapp;
 
-
 import android.content.Context;
-import android.util.Log;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.loader.content.AsyncTaskLoader;
@@ -16,7 +13,6 @@ class asyncLoader extends AsyncTaskLoader<List<News>> {
     public asyncLoader(@NonNull Context context, String url) {
         super(context);
         mUrl = url;
-        Log.i("Loader","asyncLoader constructor !!!");
     }
 
     @Nullable
@@ -34,7 +30,6 @@ class asyncLoader extends AsyncTaskLoader<List<News>> {
         }else{
             forceLoad();
         }
-        Log.i("Loader","on start loading !!!");
     }
 
 

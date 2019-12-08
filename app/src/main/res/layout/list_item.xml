@@ -34,7 +34,7 @@
         android:layout_below="@id/article_section"
         android:textSize="10sp"
         android:layout_centerHorizontal="true"
-        android:text="Mar 6, 2010" />
+        tools:text="Mar 6, 2010" />
     </RelativeLayout>
 
     <LinearLayout
@@ -43,6 +43,7 @@
         android:layout_gravity="center_vertical"
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
+        android:layout_marginBottom="3dp"
         android:layout_weight="5"
         android:orientation="vertical">
 
@@ -64,7 +65,7 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="2"
-            android:textColor="#000000"
+            android:textColor="@color/black"
             android:textSize="14sp"
             tools:text="Long placeholder location that should wrap to more than 2 lines of text" />
         <TextView
@@ -75,7 +76,9 @@
             android:layout_marginTop="2dp"
             android:textSize="9sp"
             tools:text="Jams,beron" />
+
     </LinearLayout>
+
 </LinearLayout>
 
 
