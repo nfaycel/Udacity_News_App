@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         builder.scheme("https")
                 .authority(stringUrl)
                 .appendPath("search")
-                .appendQueryParameter("api-key", "test")
+                .appendQueryParameter("api-key", "6140f015-b070-4b9c-b1bf-160b8694dd7f")
                 .appendQueryParameter("show-tags", "contributor");
         URL myUrl=null;
         try {
