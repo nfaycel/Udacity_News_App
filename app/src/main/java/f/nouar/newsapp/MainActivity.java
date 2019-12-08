@@ -18,11 +18,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.content.Loader;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<News>> {
-    public static final String GUARDIAN_API_URL = "https://content.guardianapis.com/search?api-key=6140f015-b070-4b9c-b1bf-160b8694dd7f&show-tags=contributor";
+    public static final String GUARDIAN_URL = "content.guardianapis.com";
     private ListView listView;
     private AdapterNews adapter;
     private TextView txtNoData;
@@ -65,7 +67,23 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     @NonNull
     @Override
     public Loader<List<News>> onCreateLoader(int id, @Nullable Bundle args) {
-        return new asyncLoader(MainActivity.this, GUARDIAN_API_URL);
+        return new AsyncLoader(MainActivity.this, createUrl(GUARDIAN_URL));
+    }
+
+    private static URL createUrl(String stringUrl) {
+        Uri.Builder builder = new Uri.Builder();
+        builder.scheme("https")
+                .authority(stringUrl)
+                .appendPath("search")
+                .appendQueryParameter("api-key", "test")
+                .appendQueryParameter("show-tags", "contributor");
+        URL myUrl=null;
+        try {
+            myUrl = new URL(builder.build().toString());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        return myUrl;
     }
 
     @Override

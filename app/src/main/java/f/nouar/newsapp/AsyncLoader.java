@@ -5,12 +5,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.loader.content.AsyncTaskLoader;
 
+import java.net.URL;
 import java.util.List;
 
-class asyncLoader extends AsyncTaskLoader<List<News>> {
-    private String mUrl;
+class AsyncLoader extends AsyncTaskLoader<List<News>> {
+    private URL mUrl;
     private List<News> resultFromHttp;
-    public asyncLoader(@NonNull Context context, String url) {
+    public AsyncLoader(@NonNull Context context, URL url) {
         super(context);
         mUrl = url;
     }

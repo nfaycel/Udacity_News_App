@@ -12,7 +12,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
@@ -22,36 +21,20 @@ public final class Utils {
 
     public static final String LOG_TAG = Utils.class.getSimpleName();
 
-    public static List<News> fetchNewsData(String requestUrl) {
+    public static List<News> fetchNewsData(URL requestUrl) {
            // Create URL object
-        URL url = createUrl(requestUrl);
+       // URL url = createUrl(requestUrl);
         // Perform HTTP request to the URL and receive a JSON response back
         String jsonResponse = null;
         try {
-            jsonResponse = makeHttpRequest(url);
+            jsonResponse = makeHttpRequest(requestUrl);
         } catch (IOException e) {
             Log.e(LOG_TAG, "Error closing input stream", e);
         }
-
-        // Extract relevant fields from the JSON response and create an {@link Event} object
         List<News> newsList = extractNewsListFromJson(jsonResponse);
-
-        // Return the {@link Event}
         return newsList;
     }
 
-    /**
-     * Returns new URL object from the given string URL.
-     */
-    private static URL createUrl(String stringUrl) {
-        URL url = null;
-        try {
-            url = new URL(stringUrl);
-        } catch (MalformedURLException e) {
-            Log.e(LOG_TAG, "Error with creating URL ", e);
-        }
-        return url;
-    }
 
     /**
      * Make an HTTP request to the given URL and return a String as the response.
